@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import "../src/components/LetterButton/LetterButton.css";
+import Proverb from "./components/Proverb/Proverb";
+import HangmanContainer from "./components/HangmanContainer/HangmanContainer";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+
+//-----Redux Store i Reducer--------
+const initialState = {
+  value: "",
+};
+const rootReducer = (state = initialState, action) => {
+  console.log(action);
+};
+const store = createStore(rootReducer);
+// ------------------------------------
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <>
+        <Proverb />
+        <HangmanContainer />
+      </>
+    </Provider>
   );
 }
 
